@@ -82,16 +82,6 @@ pip install matplotlib>=3.10.6 pyqt5>=5.15.11
    - Save the plot as `images/plot.png`
    - Show a confirmation message
 
-### Sample Output
-
-The generated plot shows:
-
-- **X-axis**: Load Resistance (R_L) values ranging from 221 to 3253 ohms
-- **Y-axis**: Load Power (P_L) values in watts
-- **Curve**: Demonstrates the power transfer characteristics
-
-![Sample Plot](images/plot.png)
-
 ### Using the Program
 
 #### 1. Input Format
