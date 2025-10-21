@@ -2,19 +2,15 @@ import matplotlib
 matplotlib.use('Qt5Agg')  # for interactive backend
 import matplotlib.pyplot as plt
 
-def plot():
-
-    # Data points
-    x = [221, 327, 556, 980, 2153, 3253]  # R_L values
-    y = [0.0141, 0.0160, 0.0200, 0.0245, 0.0193, 0.0130]  # P_L values
+def plot(x:list, y:list, x_label:str, y_label:str, title:str):
 
     # Create the plot
     plt.plot(x, y, marker='o')
 
     # Set labels and title
-    plt.xlabel('$R_L~(\Omega)$')
-    plt.ylabel('$P_L$ (W)')
-    plt.title('$P_L~~VS~~R_L$')
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(title)
 
     # Display grid
     plt.grid(True)
@@ -25,8 +21,18 @@ def plot():
     # Try to show (will warn if non-interactive)
     plt.show()
     
-    print("Plot saved as plot.png")
+    print("\nPlot saved as plot.png")
 
 
 if __name__ == "__main__":
-    plot()
+    # Data points 
+    print("Please Enter your data points:")
+    x = list(map(int, (input("x : ")).strip().split(",")))
+    y = list(map(int, (input("y : ")).strip().split(",")))
+
+    # labels & title
+    x_label = input("Enter label for X axis: ").strip()
+    y_label = input("Enter label for Y axis: ").strip()
+    title = input("Enter the Title of the graph: ").strip()
+
+    plot(x, y, x_label, y_label, title)

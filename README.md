@@ -1,20 +1,88 @@
-# Plot Graph - Power vs Resistance Analysis
+# Interactive Plot Generator
 
-A Python project for generating scientific plots that visualize the relationship between load resistance (R_L) and load power (P_L).
+A Python project for generating high-quality scientific plots with custom data points and labels. This interactive tool allows users to input their own data and customize plot labels through a command-line interface.
 
 ## Overview
 
-This project creates a matplotlib-based visualization showing how power varies with resistance in an electrical circuit. The plot demonstrates the characteristic curve of power dissipation across different load resistance values.
+This project creates matplotlib-based visualizations from user-provided data points. The program prompts users for x and y coordinates, axis labels, and a plot title, making it versatile for various data visualization needs.
 
 ## Features
 
-- **Interactive Plotting**: Uses Qt5Agg backend for interactive plot display
+- **Interactive Input**: User-friendly command-line interface for data entry
+- **Flexible Plotting**: Create plots with any numerical data series
+- **Interactive Display**: Uses Qt5Agg backend for interactive plot windows
 - **High-Quality Output**: Saves plots as high-resolution PNG images (300 DPI)
-- **Scientific Notation**: Proper mathematical notation using LaTeX formatting
 - **Grid Display**: Enhanced readability with grid lines
+- **Custom Labels**: Full control over axis labels and plot title
 - **Automatic Saving**: Plots are automatically saved to the `images/` directory
 
-## Sample Output
+## Prerequisites
+
+- Python 3.12 or higher
+- A GUI environment (for interactive plotting)
+- Git (for version control)
+
+## Dependencies
+
+- matplotlib >= 3.10.6
+- PyQt5 >= 5.15.11
+
+## Installation Guide
+
+Choose one of the following installation methods:
+
+### 1. Using uv (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/Kneysh/plot-graph.git
+
+# Navigate to project directory
+cd plot-graph
+
+# Install dependencies using uv
+uv sync
+```
+
+### 2. Using pip
+
+```bash
+# Clone the repository
+git clone https://github.com/Kneysh/plot-graph.git
+
+# Navigate to project directory
+cd plot-graph
+
+# Create and activate virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install matplotlib>=3.10.6 pyqt5>=5.15.11
+```
+
+## Usage Guide
+
+### Basic Usage
+
+1. Ensure you're in the project directory:
+
+   ```bash
+   cd plot-graph
+   ```
+
+2. Run the script:
+
+   ```bash
+   python main.py
+   ```
+
+3. The program will:
+   - Display an interactive plot window
+   - Save the plot as `images/plot.png`
+   - Show a confirmation message
+
+### Sample Output
 
 The generated plot shows:
 
@@ -24,139 +92,175 @@ The generated plot shows:
 
 ![Sample Plot](images/plot.png)
 
-## Requirements
+### Using the Program
 
-- Python 3.12 or higher
-- matplotlib >= 3.10.6
-- PyQt5 >= 5.15.11
+#### 1. Input Format
 
-## Installation
+When running the program, you'll be prompted to enter:
 
-### Using uv (recommended)
+1. **X-axis values**: Enter comma-separated numbers (e.g., `1,2,3,4,5`)
+2. **Y-axis values**: Enter comma-separated numbers (e.g., `10,20,30,40,50`)
+3. **X-axis label**: Enter a descriptive label for your x-axis
+4. **Y-axis label**: Enter a descriptive label for your y-axis
+5. **Plot title**: Enter the title for your plot
 
-```bash
-# Clone the project
-git clone git@github.com:Kneysh/plot-graph.git
-
-# enter the project directory
-cd plot-graph
-
-# Install dependencies using uv
-uv sync
-```
-
-### Using pip
+Example input:
 
 ```bash
-# Install dependencies
-pip install matplotlib>=3.10.6 pyqt5>=5.15.11
+Please Enter your data points:
+x : 1,2,3,4,5
+y : 10,20,30,40,50
+Enter label for X axis: Time (seconds)
+Enter label for Y axis: Temperature (°C)
+Enter the Title of the graph: Temperature vs Time
 ```
 
-## Usage
+#### 2. Output
 
-### Running the Script
+The program will:
+
+1. Generate an interactive plot window showing your data
+2. Save the plot as a high-resolution PNG file (300 DPI)
+3. Display a confirmation message
+
+The generated plot includes:
+
+- Data points marked with circular markers
+- Lines connecting the data points
+- A grid for better readability
+- Your custom axis labels and title
+- Automatically scaled axes based on your data
+
+#### 3. Plot Customization
+
+To modify the plot appearance, you can edit the `plot` function in `main.py`:
+
+````python
+def plot(x:list, y:list, x_label:str, y_label:str, title:str):
+    # Modify marker style, color, or size
+    plt.plot(x, y, marker='o')  # Try 's' for squares, '^' for triangles
+
+    # Adjust grid style
+    plt.grid(True)  # Add alpha=0.5 for transparency
+
+    # Change output settings
+    plt.savefig('./images/plot.png', dpi=300, bbox_inches='tight')
+```## Contribution Guidelines
+
+We welcome contributions! Here's how you can help improve this project:
+
+### 1. Setting Up Development Environment
 
 ```bash
-# Using uv
-uv run python main.py
+# Fork the repository on GitHub
 
-# Or with regular Python
-python main.py
-```
+# Clone your fork
+git clone https://github.com/YOUR-USERNAME/plot-graph.git
 
-### Expected Output
+# Add upstream remote
+git remote add upstream https://github.com/Kneysh/plot-graph.git
 
-When you run the script, it will:
+# Create a new branch
+git checkout -b feature/your-feature-name
+````
 
-1. Generate an interactive plot window (if display is available)
-2. Save the plot as `images/plot.png`
-3. Print a confirmation message
+### 2. Development Workflow
 
-```
-Plot saved as plot.png
-```
+1. **Code Style**
+
+   - Follow PEP 8 guidelines
+   - Use meaningful variable names
+   - Add comments for complex logic
+   - Include docstrings for functions
+
+2. **Testing**
+
+   - Test your changes with different data sets
+   - Verify plot generation works
+   - Check interactive features
+   - Ensure proper error handling
+
+3. **Committing Changes**
+   ```bash
+   git add .
+   git commit -m "Brief description of changes"
+   git push origin feature/your-feature-name
+   ```
+
+### 3. Submitting Pull Requests
+
+1. Update your fork:
+
+   ```bash
+   git fetch upstream
+   git rebase upstream/main
+   ```
+
+2. Create a pull request:
+   - Go to GitHub and create a PR from your feature branch
+   - Provide a clear description of changes
+   - Include screenshots if UI changes were made
+   - Reference any related issues
+
+### 4. Code Review Process
+
+- All PRs will be reviewed
+- Address any requested changes
+- Maintain clear communication in PR comments
+- Be patient during the review process
+
+## Troubleshooting
+
+### Common Issues and Solutions
+
+1. **Display Issues**
+
+   - Error: "No display name and no $DISPLAY environment variable"
+
+   ```bash
+   # Solution: Set matplotlib to use a non-interactive backend
+   export MPLBACKEND="Agg"
+   ```
+
+2. **Dependencies**
+
+   - Qt5 missing:
+
+   ```bash
+   # Ubuntu/Debian
+   sudo apt-get install python3-qt5
+
+   # macOS
+   brew install pyqt5
+   ```
+
+3. **Permission Issues**
+   ```bash
+   # Fix images directory permissions
+   chmod 755 images/
+   ```
 
 ## Project Structure
 
 ```
 plot-graph/
-├── main.py           # Main plotting script
+├── main.py           # Main plotting script with interactive input
 ├── pyproject.toml    # Project configuration and dependencies
-├── uv.lock          # Dependency lock file
-├── README.md        # This file
+├── README.md        # Documentation
 └── images/          # Output directory for generated plots
-    └── plot.png     # Generated plot image
+    └── plot.png     # Your generated plot
 ```
-
-## Customization
-
-### Modifying Data Points
-
-To plot your own data, edit the `x` and `y` arrays in `main.py`:
-
-```python
-# Data points
-x = [221, 327, 556, 980, 2153, 3253]  # Your R_L values
-y = [0.0141, 0.0160, 0.0200, 0.0245, 0.0193, 0.0130]  # Your P_L values
-```
-
-### Changing Plot Appearance
-
-You can customize various aspects of the plot:
-
-- **Labels**: Modify `plt.xlabel()`, `plt.ylabel()`, and `plt.title()`
-- **Markers**: Change the `marker` parameter in `plt.plot()`
-- **Colors**: Add `color` parameter to `plt.plot()`
-- **Output**: Change the filename in `plt.savefig()`
-
-### Example Customizations
-
-```python
-# Different marker style and color
-plt.plot(x, y, marker='s', color='red', linewidth=2)
-
-# Custom labels
-plt.xlabel('Resistance (Ω)')
-plt.ylabel('Power (W)')
-plt.title('Power Transfer Analysis')
-```
-
-## Technical Notes
-
-- **Backend**: Uses Qt5Agg for interactive display; falls back gracefully in headless environments
-- **LaTeX Rendering**: Mathematical symbols are rendered using matplotlib's LaTeX support
-- **Image Quality**: Output images are saved at 300 DPI with tight bounding boxes for publication quality
-
-## Troubleshooting
-
-### Display Issues
-
-If you encounter display issues:
-
-- Ensure you have a GUI environment available
-- For headless systems, the plot will still be saved as an image
-- Install Qt5 development libraries if needed
-
-### Dependencies
-
-If you have dependency conflicts:
-
-- Use a virtual environment
-- Consider using `uv` for better dependency management
 
 ## License
 
-This project is open source. Feel free to modify and distribute as needed.
+This project is released under the MIT License. See [LICENSE](LICENSE) file for details.
 
-## Contributing
+## Support
 
-To contribute to this project:
-
-1. Fork the repository
-2. Make your changes
-3. Test the plotting functionality
-4. Submit a pull request
+- Create an issue for bug reports
+- Start a discussion for feature requests
+- Check existing issues before reporting
 
 ---
 
-_Generated plot demonstrates electrical circuit analysis showing the relationship between load resistance and power dissipation._
+For more information, contact the maintainers or open an issue on GitHub.
